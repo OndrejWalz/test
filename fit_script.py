@@ -7,7 +7,7 @@ from scipy.optimize import curve_fit
 
 #def power_law_func(x, a, b):
 #   return a * np.power(x, b)
-
+#added a power law function for comparison
 def exponential_func(x, a, b):
     return a * np.exp(b * x)
 
