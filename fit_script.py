@@ -5,8 +5,8 @@ from scipy.optimize import curve_fit
 
 # Define exponential function: y = a * exp(b * x)
 
-#def power_law_func(x, a, b):
-#   return a * np.power(x, b)
+def power_law_func(x, a, b):
+   return a * np.power(x, b)
 #added a power law function for comparison
 def exponential_func(x, a, b):
     return a * np.exp(b * x)
@@ -23,7 +23,7 @@ y_data = data['y'].values
 # Perform exponential fit
 # Initial guess for parameters [a, b]
 initial_guess = [1.0, 0.1]
-params, covariance = curve_fit(exponential_func, x_data, y_data, p0=initial_guess)
+params, covariance = curve_fit(power_law_func, x_data, y_data, p0=initial_guess)
 
 # Extract fitted parameters
 a_fit, b_fit = params
@@ -39,8 +39,8 @@ plt.scatter(x_data, y_data, label='Data', color='blue', alpha=0.6)
 
 # Generate smooth curve for the fit
 x_fit = np.linspace(x_data.min(), x_data.max(), 200)
-y_fit = exponential_func(x_fit, a_fit, b_fit)
-plt.plot(x_fit, y_fit, label=f'Fit: y = {a_fit:.2f}*exp({b_fit:.2f}*x)', 
+y_fit = power_law_func(x_fit, a_fit, b_fit)
+plt.plot(x_fit, y_fit, label=f'Fit: y = {a_fit:.2f}*x^{b_fit:.2f}', 
          color='red', linewidth=2)
 
 plt.xlabel('x')
